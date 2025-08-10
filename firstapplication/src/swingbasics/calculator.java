@@ -1,4 +1,4 @@
-package Dummy;
+package swingbasics;
 
 
 import javax.swing.JOptionPane;
