@@ -22,3 +22,38 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+
+# === NetBeans build artifacts ===
+/build/
+/dist/
+/nbbuild/
+/nbdist/
+/nbproject/private/
+
+# === Compiled class files ===
+*.class
+
+# === Backup / temp files ===
+*.log
+*.tmp
+*.bak
+*~
+.DS_Store
+
+# === OS-specific ===
+Thumbs.db
+ehthumbs.db
+
+# === Gradle/Maven (if used) ===
+/target/
+/.gradle/
+/out/
+/.mvn/
+
+# === IDE metadata (if not needed by team) ===
+/.idea/
+*.iml
+.vscode/
+
+# === Sensitive config files (example) ===
+config.properties
