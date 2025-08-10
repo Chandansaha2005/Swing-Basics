@@ -3,6 +3,12 @@
 <Form version="1.8" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+      <Color blue="0" green="0" red="0" type="rgb"/>
+    </Property>
+    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+      <Color blue="0" green="0" red="0" type="rgb"/>
+    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -23,8 +29,8 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="0" pref="49" max="32767" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace min="0" pref="52" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="L4" min="-2" max="-2" attributes="0"/>
@@ -35,7 +41,7 @@
                   <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="B1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="B1" max="32767" attributes="0"/>
                               <Component id="B2" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -45,8 +51,8 @@
                                   </Group>
                                   <EmptySpace min="-2" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="T1" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="T2" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="T1" max="32767" attributes="0"/>
+                                      <Component id="T2" max="32767" attributes="0"/>
                                       <Component id="P1" alignment="0" min="-2" pref="145" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -67,7 +73,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                       <Component id="B3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
@@ -79,8 +85,8 @@
                   </Group>
               </Group>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="L1" alignment="1" min="-2" pref="24" max="-2" attributes="0"/>
-                  <Component id="T1" alignment="1" min="-2" pref="26" max="-2" attributes="0"/>
+                  <Component id="L1" min="-2" pref="24" max="-2" attributes="0"/>
+                  <Component id="T1" min="-2" pref="26" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -98,38 +104,12 @@
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               <Component id="B2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="45" max="32767" attributes="0"/>
+              <EmptySpace pref="25" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabel1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Don&apos;t have an account ?"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="B2">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Sign Up"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="B2ActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="L4">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Login to your account "/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="B3">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="\ud83d\udd03" containsInvalidXMLChars="true"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="B3ActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JLabel" name="L1">
       <Properties>
         <Property name="text" type="java.lang.String" value="Enter User Id :"/>
@@ -166,6 +146,32 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="B1ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Don&apos;t have an account ?"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="B2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Sign Up"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="B2ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="L4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Login to your account "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="B3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="\ud83d\udd03" containsInvalidXMLChars="true"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="B3ActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

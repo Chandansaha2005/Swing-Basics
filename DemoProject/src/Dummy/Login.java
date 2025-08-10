@@ -4,20 +4,27 @@ package Dummy;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
+import java.sql.*;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author CHANDAN
  */
-public class login extends javax.swing.JFrame {
-    
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(login.class.getName());
+public class Login extends javax.swing.JFrame {
+
+    Connection con;
+    PreparedStatement pst;
+    ResultSet rs;
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Login.class.getName());
 
     /**
-     * Creates new form login
+     * Creates new form Login
      */
-    public login() {
+    public Login(/*String id, String email*/) {
         initComponents();
+//        T1.setText(id);
+//        T2.setText(email);
     }
 
     /**
@@ -29,10 +36,6 @@ public class login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        B2 = new javax.swing.JButton();
-        L4 = new javax.swing.JLabel();
-        B3 = new javax.swing.JButton();
         L1 = new javax.swing.JLabel();
         L2 = new javax.swing.JLabel();
         L3 = new javax.swing.JLabel();
@@ -40,26 +43,14 @@ public class login extends javax.swing.JFrame {
         T2 = new javax.swing.JTextField();
         P1 = new javax.swing.JPasswordField();
         B1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        B2 = new javax.swing.JButton();
+        L4 = new javax.swing.JLabel();
+        B3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setText("Don't have an account ?");
-
-        B2.setText("Sign Up");
-        B2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                B2ActionPerformed(evt);
-            }
-        });
-
-        L4.setText("Login to your account ");
-
-        B3.setText("🔃");
-        B3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                B3ActionPerformed(evt);
-            }
-        });
+        setBackground(new java.awt.Color(0, 0, 0));
+        setForeground(new java.awt.Color(0, 0, 0));
 
         L1.setText("Enter User Id :");
 
@@ -87,12 +78,30 @@ public class login extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Don't have an account ?");
+
+        B2.setText("Sign Up");
+        B2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B2ActionPerformed(evt);
+            }
+        });
+
+        L4.setText("Login to your account ");
+
+        B3.setText("🔃");
+        B3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 49, Short.MAX_VALUE)
+                .addGap(0, 52, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(L4)
@@ -149,11 +158,19 @@ public class login extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(12, 12, 12)
                 .addComponent(B2)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void T1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_T1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_T1ActionPerformed
+
+    private void T2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_T2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_T2ActionPerformed
 
     private void B2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B2ActionPerformed
         SignUp ob = new SignUp();
@@ -166,14 +183,6 @@ public class login extends javax.swing.JFrame {
         T2.setText("");// TODO add your handling code here:
         P1.setText("");// TODO add your handling code here:
     }//GEN-LAST:event_B3ActionPerformed
-
-    private void T1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_T1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_T1ActionPerformed
-
-    private void T2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_T2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_T2ActionPerformed
 
     private void B1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B1ActionPerformed
         try {
@@ -208,6 +217,7 @@ public class login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Connection Problem !!");
         }
 
+
     }//GEN-LAST:event_B1ActionPerformed
 
     /**
@@ -232,7 +242,7 @@ public class login extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new login().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new Login().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
