@@ -57,3 +57,5 @@ ehthumbs.db
 
 # === Sensitive config files (example) ===
 config.properties
+/firstapplication/build/
+/firstapplication/nbproject/private/
