@@ -3,19 +3,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package swingbasics;
+
 import javax.swing.JOptionPane;
 import java.sql.*;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author CHANDAN
  */
 public class Home extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Home.class.getName());
     Connection con;
     Statement stmt;
     ResultSet rs;
-    
+
     /**
      * Creates new form Home
      */
@@ -34,7 +37,7 @@ public class Home extends javax.swing.JFrame {
 
         b1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Table1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -49,18 +52,15 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Table1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "User Id", "User Name", "Email Id"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(Table1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -90,7 +90,25 @@ public class Home extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void b1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b1ActionPerformed
-        // TODO add your handling code here:
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_swing?useSSL=false", "root", "1234567k");
+            String sql;
+            sql = "SELECT * FROM signup";
+            stmt = this.con.createStatement();
+            stmt.executeQuery(sql);
+            String uid, uname, eml;
+            while (rs.next()) {
+                uid = rs.getString("User_Id");
+                uname = rs.getString("Name");
+                eml = rs.getString("Email_id");
+                String x[] = {uid, uname, eml};
+                DefaultTableModel ob = (DefaultTableModel) Table1.getModel();
+                ob.addRow(x);
+            }
+        } catch (Exception e) {
+
+        }
     }//GEN-LAST:event_b1ActionPerformed
 
     /**
@@ -119,8 +137,8 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable Table1;
     private javax.swing.JButton b1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
