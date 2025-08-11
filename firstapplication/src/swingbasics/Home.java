@@ -24,6 +24,21 @@ public class Home extends javax.swing.JFrame {
      */
     public Home() {
         initComponents();
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_swing?useSSL=false", "root", "1234567k");
+            String sql;
+            sql = "SELECT Name FROM signup";
+            stmt = this.con.createStatement();
+            rs = stmt.executeQuery(sql);
+            String uname;
+            while (rs.next()) {
+                uname = rs.getString("Name");
+                C1.addItem(uname);
+            }
+        } catch (Exception e) {
+
+        }
     }
 
     /**
@@ -39,6 +54,7 @@ public class Home extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         Table1 = new javax.swing.JTable();
         B3 = new javax.swing.JButton();
+        C1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -46,13 +62,16 @@ public class Home extends javax.swing.JFrame {
 
         b1.setBackground(new java.awt.Color(51, 51, 255));
         b1.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
-        b1.setText("SHOW");
+        b1.setText("SHOW All");
         b1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 b1ActionPerformed(evt);
             }
         });
 
+        Table1.setBackground(new java.awt.Color(255, 255, 255));
+        Table1.setFont(new java.awt.Font("Sitka Text", 0, 12)); // NOI18N
+        Table1.setForeground(new java.awt.Color(0, 0, 0));
         Table1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -61,6 +80,7 @@ public class Home extends javax.swing.JFrame {
                 "User Id", "User Name", "Email Id"
             }
         ));
+        Table1.setGridColor(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(Table1);
 
         B3.setText("🔃");
@@ -70,36 +90,47 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        C1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                C1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 767, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(b1)
-                        .addGap(39, 39, 39))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(B3)
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(C1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(b1))
+                        .addGap(60, 60, 60))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(b1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(C1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(349, 349, 349))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(B3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(b1)
-                        .addGap(53, 53, 53))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -112,7 +143,7 @@ public class Home extends javax.swing.JFrame {
             String sql;
             sql = "SELECT * FROM signup";
             stmt = this.con.createStatement();
-            rs=stmt.executeQuery(sql);
+            rs = stmt.executeQuery(sql);
             String uid, uname, eml;
             while (rs.next()) {
                 uid = rs.getString("User_Id");
@@ -132,6 +163,10 @@ public class Home extends javax.swing.JFrame {
 //        DefaultTableModel ob = (DefaultTableModel)Table1.getModel();
 //        ob.rowsRemoved(event);
     }//GEN-LAST:event_B3ActionPerformed
+
+    private void C1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_C1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,6 +195,7 @@ public class Home extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton B3;
+    private javax.swing.JComboBox<String> C1;
     private javax.swing.JTable Table1;
     private javax.swing.JButton b1;
     private javax.swing.JScrollPane jScrollPane1;
