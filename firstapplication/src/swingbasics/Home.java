@@ -12,7 +12,10 @@ import java.sql.*;
 public class Home extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Home.class.getName());
-
+    Connection con;
+    Statement stmt;
+    ResultSet rs;
+    
     /**
      * Creates new form Home
      */
