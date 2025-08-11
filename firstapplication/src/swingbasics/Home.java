@@ -18,6 +18,7 @@ public class Home extends javax.swing.JFrame {
     Connection con;
     Statement stmt;
     ResultSet rs;
+    String uname;
 
     /**
      * Creates new form Home
@@ -31,7 +32,6 @@ public class Home extends javax.swing.JFrame {
             sql = "SELECT Name FROM signup";
             stmt = this.con.createStatement();
             rs = stmt.executeQuery(sql);
-            String uname;
             while (rs.next()) {
                 uname = rs.getString("Name");
                 C1.addItem(uname);
@@ -55,6 +55,7 @@ public class Home extends javax.swing.JFrame {
         Table1 = new javax.swing.JTable();
         B3 = new javax.swing.JButton();
         C1 = new javax.swing.JComboBox<>();
+        b2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -96,40 +97,52 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        b2.setBackground(new java.awt.Color(0, 186, 242));
+        b2.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
+        b2.setForeground(new java.awt.Color(0, 0, 0));
+        b2.setText("SHOW");
+        b2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 767, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 827, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(B3)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(C1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(b1))
-                        .addGap(60, 60, 60))))
+                            .addComponent(b1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(C1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(b2))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(b1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(C1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(349, 349, 349))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(B3)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(b1)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(C1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(b2))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -168,6 +181,28 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_C1ActionPerformed
 
+    private void b2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b2ActionPerformed
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_swing?useSSL=false", "root", "1234567k");
+            String sql;
+            sql = "SELECT * FROM signup WHERE Name='" + C1.getSelectedItem() + "'";
+            stmt = this.con.createStatement();
+            rs = stmt.executeQuery(sql);
+            String uid, uname, eml;
+            if (rs.next()) {
+                uid = rs.getString("User_Id");
+                uname = rs.getString("Name");
+                eml = rs.getString("Email_id");
+                String x[] = {uid, uname, eml};
+                DefaultTableModel ob = (DefaultTableModel) Table1.getModel();
+                ob.addRow(x);
+            }
+        } catch (Exception e) {
+
+        }
+    }//GEN-LAST:event_b2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -198,6 +233,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> C1;
     private javax.swing.JTable Table1;
     private javax.swing.JButton b1;
+    private javax.swing.JButton b2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
