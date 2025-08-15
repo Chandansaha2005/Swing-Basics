@@ -4,19 +4,43 @@
  */
 package swingbasics;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author CHANDAN
  */
 public class Edit_Info extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Edit_Info.class.getName());
+    Connection con;
+    Statement stmt;
+    ResultSet rs;
+    String uname;
 
     /**
      * Creates new form Edit_Info
      */
     public Edit_Info() {
         initComponents();
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_swing?useSSL=false", "root", "1234567k");
+            String sql;
+            sql = "SELECT Name FROM signup";
+            stmt = this.con.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                uname = rs.getString("Name");
+                c1.addItem(uname);
+            }
+        } catch (Exception e) {
+
+        }
     }
 
     /**
@@ -40,7 +64,7 @@ public class Edit_Info extends javax.swing.JFrame {
         b2 = new javax.swing.JButton();
         b3 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Table1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -108,7 +132,7 @@ public class Edit_Info extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Table1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -116,7 +140,7 @@ public class Edit_Info extends javax.swing.JFrame {
                 "Email_id", "User_id", "User_Name"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(Table1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -208,7 +232,25 @@ public class Edit_Info extends javax.swing.JFrame {
     }//GEN-LAST:event_c1ActionPerformed
 
     private void b1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b1ActionPerformed
-        // TODO add your handling code here:
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_swing?useSSL=false", "root", "1234567k");
+            String sql;
+            sql = "SELECT * FROM signup WHERE Name='" + c1.getSelectedItem() + "'";
+            stmt = this.con.createStatement();
+            rs = stmt.executeQuery(sql);
+            String uid, uname, eml;
+            if (rs.next()) {
+                uid = rs.getString("User_Id");
+                uname = rs.getString("Name");
+                eml = rs.getString("Email_id");
+                String x[] = {uid, uname, eml};
+                DefaultTableModel ob = (DefaultTableModel) Table1.getModel();
+                ob.addRow(x);
+            }
+        } catch (Exception e) {
+
+        }
     }//GEN-LAST:event_b1ActionPerformed
 
     private void b2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b2ActionPerformed
@@ -249,12 +291,12 @@ public class Edit_Info extends javax.swing.JFrame {
     private javax.swing.JLabel L2;
     private javax.swing.JLabel L3;
     private javax.swing.JLabel L4;
+    private javax.swing.JTable Table1;
     private javax.swing.JButton b1;
     private javax.swing.JButton b2;
     private javax.swing.JButton b3;
     private javax.swing.JComboBox<String> c1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JPasswordField p1;
     private javax.swing.JTextField t1;
     private javax.swing.JTextField t2;
