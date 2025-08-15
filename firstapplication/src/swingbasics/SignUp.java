@@ -79,6 +79,7 @@ public class SignUp extends javax.swing.JFrame {
             }
         });
 
+        Button1.setBackground(new java.awt.Color(51, 51, 255));
         Button1.setText("Sign up");
         Button1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,8 +100,10 @@ public class SignUp extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setForeground(new java.awt.Color(0, 0, 255));
         jLabel1.setText("Create Account");
 
+        Button3.setBackground(new java.awt.Color(0, 0, 255));
         Button3.setText("Login");
         Button3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
