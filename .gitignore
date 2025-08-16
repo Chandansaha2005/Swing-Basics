@@ -1,16 +1,14 @@
-# Compiled class file
+# === Compiled class files ===
 *.class
 
-# Log file
+# === Log & temp files ===
 *.log
+*.tmp
+*.bak
+*~
+.DS_Store
 
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
+# === Java archives ===
 *.jar
 *.war
 *.nar
@@ -19,7 +17,7 @@
 *.tar.gz
 *.rar
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+# === JVM crash logs ===
 hs_err_pid*
 replay_pid*
 
@@ -29,33 +27,23 @@ replay_pid*
 /nbbuild/
 /nbdist/
 /nbproject/private/
-
-# === Compiled class files ===
-*.class
-
-# === Backup / temp files ===
-*.log
-*.tmp
-*.bak
-*~
-.DS_Store
-
-# === OS-specific ===
-Thumbs.db
-ehthumbs.db
+/firstapplication/build/
+/firstapplication/nbproject/private/
 
 # === Gradle/Maven (if used) ===
 /target/
 /.gradle/
 /out/
-/.mvn/
+/mvn/
 
-# === IDE metadata (if not needed by team) ===
+# === IDE metadata ===
 /.idea/
 *.iml
 .vscode/
 
-# === Sensitive config files (example) ===
+# === OS-specific ===
+Thumbs.db
+ehthumbs.db
+
+# === Sensitive config files ===
 config.properties
-/firstapplication/build/
-/firstapplication/nbproject/private/
