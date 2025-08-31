@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.*;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -30,20 +31,6 @@ public class Edit_Info extends javax.swing.JFrame {
      */
     public Edit_Info() {
         initComponents();
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_swing?useSSL=false", "root", "1234567k");
-            String sql;
-            sql = "SELECT Name FROM signup";
-            stmt = this.con.createStatement();
-            rs = stmt.executeQuery(sql);
-            while (rs.next()) {
-                uname = rs.getString("Name");
-                c1.addItem(uname);
-            }
-        } catch (Exception e) {
-
-        }
     }
 
     /**
@@ -68,6 +55,7 @@ public class Edit_Info extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         Table1 = new javax.swing.JTable();
         t3 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -134,9 +122,14 @@ public class Edit_Info extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Email_id", "User_id", "User_Name"
+                "Email_id", "User_id", "User_Name", "Password"
             }
         ));
+        Table1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Table1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(Table1);
 
         t3.addActionListener(new java.awt.event.ActionListener() {
@@ -145,16 +138,20 @@ public class Edit_Info extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("🔃");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(200, Short.MAX_VALUE)
+                .addContainerGap(337, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(186, 186, 186))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,15 +162,23 @@ public class Edit_Info extends javax.swing.JFrame {
                             .addComponent(b1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(p1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(t2, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(t1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(b2, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(b3, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(t3, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(306, 306, 306))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(p1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(t1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(b2, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(b3, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(t3, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(306, 306, 306))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(t2, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(17, 17, 17))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addContainerGap())))
+            .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,7 +194,9 @@ public class Edit_Info extends javax.swing.JFrame {
                             .addComponent(L3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(t3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(119, 119, 119)
+                        .addContainerGap()
+                        .addComponent(jButton1)
+                        .addGap(86, 86, 86)
                         .addComponent(t1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(t2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -202,9 +209,8 @@ public class Edit_Info extends javax.swing.JFrame {
                     .addComponent(b1)
                     .addComponent(b2)
                     .addComponent(b3))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(64, 64, 64))
+                .addGap(82, 82, 82)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -227,21 +233,22 @@ public class Edit_Info extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_swing?useSSL=false", "root", "1234567k");
             String sql;
-            sql = "SELECT * FROM signup WHERE Name='" + c1.getSelectedItem() + "'";
+            sql = "SELECT * FROM signup";
             stmt = this.con.createStatement();
             rs = stmt.executeQuery(sql);
-            String uid, uname, eml;
+            String uid, uname, eml, pwd;
             count++;
             if (count == 1) {
                 while (rs.next()) {
                     uid = rs.getString("User_Id");
                     uname = rs.getString("Name");
                     eml = rs.getString("Email_id");
-                    String x[] = {uid, uname, eml};
+                    pwd = rs.getString("Password");
+                    String x[] = {eml, uid, uname, pwd};
                     ob = (DefaultTableModel) Table1.getModel();
                     ob.addRow(x);
                     rcount++;
-                    System.out.println("again");
+                    System.out.println(rcount);
                 }
             } else {
                 delete();
@@ -252,11 +259,13 @@ public class Edit_Info extends javax.swing.JFrame {
     }//GEN-LAST:event_b1ActionPerformed
     public void delete() {
         ob = (DefaultTableModel) Table1.getModel();
-        ob.removeRow(rcount--);
+        ob.removeRow(rcount);
         count = 0;
+        rcount = 0;
     }
+
     private void b2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b2ActionPerformed
-        // TODO add your handling code here:
+          
     }//GEN-LAST:event_b2ActionPerformed
 
     private void b3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b3ActionPerformed
@@ -266,6 +275,25 @@ public class Edit_Info extends javax.swing.JFrame {
     private void t3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_t3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ob = (DefaultTableModel) Table1.getModel();
+        for (int i = 0; i < rcount; i++) {
+            ob.removeRow(i);
+        }
+        rcount = 0;
+        count = 0;
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void Table1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Table1MouseClicked
+        int rowno = Table1.getSelectedRow();
+        TableModel rd = (TableModel) Table1.getModel();
+        t1.setText(rd.getValueAt(rowno, 0).toString());
+        t3.setText(rd.getValueAt(rowno, 1).toString());
+        t2.setText(rd.getValueAt(rowno, 2).toString());
+        p1.setText(rd.getValueAt(rowno, 3).toString());
+        t1.enable(false);
+    }//GEN-LAST:event_Table1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -301,6 +329,7 @@ public class Edit_Info extends javax.swing.JFrame {
     private javax.swing.JButton b1;
     private javax.swing.JButton b2;
     private javax.swing.JButton b3;
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPasswordField p1;
     private javax.swing.JTextField t1;
