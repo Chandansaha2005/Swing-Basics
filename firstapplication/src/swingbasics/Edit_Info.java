@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.*;
 import javax.swing.table.TableModel;
@@ -23,6 +24,7 @@ public class Edit_Info extends javax.swing.JFrame {
     Statement stmt;
     ResultSet rs;
     String uname;
+    PreparedStatement pst;
     int count = 0, rcount = 0;
     DefaultTableModel ob;
 
@@ -229,6 +231,38 @@ public class Edit_Info extends javax.swing.JFrame {
     }//GEN-LAST:event_p1ActionPerformed
 
     private void b1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b1ActionPerformed
+        show();
+    }//GEN-LAST:event_b1ActionPerformed
+    public void delete() {
+        ob = (DefaultTableModel) Table1.getModel();
+        ob.removeRow(rcount);
+        count = 0;
+        rcount = 0;
+    }
+
+    private void b2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b2ActionPerformed
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_swing?useSSL=false", "root", "1234567k");
+            String sql;
+            String uid = t3.getText();
+            String fnm = t2.getText();
+            String email = t1.getText();
+            String pass = p1.getText();
+            sql = "update signup set User_id='" + uid + "',Name='" + fnm + "',Password='" + pass + "' where Email_id='" + email + "'";
+            pst = this.con.prepareStatement(sql);
+            int x = pst.executeUpdate();
+            if (x == 1) {
+                JOptionPane.showMessageDialog(rootPane, "Data Update Succesfully !!");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Problem Regarding Updation!!");
+            }
+            show();
+        } catch (Exception e) {
+
+        }
+    }//GEN-LAST:event_b2ActionPerformed
+    public void show() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_swing?useSSL=false", "root", "1234567k");
@@ -256,18 +290,7 @@ public class Edit_Info extends javax.swing.JFrame {
         } catch (Exception e) {
 
         }
-    }//GEN-LAST:event_b1ActionPerformed
-    public void delete() {
-        ob = (DefaultTableModel) Table1.getModel();
-        ob.removeRow(rcount);
-        count = 0;
-        rcount = 0;
     }
-
-    private void b2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b2ActionPerformed
-          
-    }//GEN-LAST:event_b2ActionPerformed
-
     private void b3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_b3ActionPerformed
