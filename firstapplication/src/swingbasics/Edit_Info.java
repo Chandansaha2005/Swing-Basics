@@ -231,7 +231,7 @@ public class Edit_Info extends javax.swing.JFrame {
     }//GEN-LAST:event_p1ActionPerformed
 
     private void b1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b1ActionPerformed
-        show();
+        showtable();
     }//GEN-LAST:event_b1ActionPerformed
     public void delete() {
         ob = (DefaultTableModel) Table1.getModel();
@@ -253,16 +253,18 @@ public class Edit_Info extends javax.swing.JFrame {
             pst = this.con.prepareStatement(sql);
             int x = pst.executeUpdate();
             if (x == 1) {
+                showtable();
                 JOptionPane.showMessageDialog(rootPane, "Data Update Succesfully !!");
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Problem Regarding Updation!!");
             }
-            show();
         } catch (Exception e) {
+
+        } finally {
 
         }
     }//GEN-LAST:event_b2ActionPerformed
-    public void show() {
+    public void showtable() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_swing?useSSL=false", "root", "1234567k");
@@ -293,6 +295,23 @@ public class Edit_Info extends javax.swing.JFrame {
     }
     private void b3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b3ActionPerformed
         // TODO add your handling code here:
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_swing?useSSL=false", "root", "1234567k");
+            String sql;
+            String email = t1.getText();
+            sql = "delete from signup where Email_id='" + email + "'";
+            pst = this.con.prepareStatement(sql);
+            int x = pst.executeUpdate();
+            if (x == 1) {
+                showtable();
+                JOptionPane.showMessageDialog(rootPane, "Data Deleted Succesfully !!");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Problem Regarding Deletion!!");
+            }
+        } catch (Exception e) {
+
+        }
     }//GEN-LAST:event_b3ActionPerformed
 
     private void t3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t3ActionPerformed
